@@ -1,0 +1,28 @@
+name: 'ghput-release'
+description: 'GitHub Action for `ghput tag --release`.'
+inputs:
+  tag:
+    description: 'tag'
+    required: false
+  tag-time-format:
+    description: 'time format of tag'
+    required: false
+    default: '%Y%m%d-%H%M%S%z'
+  release-title:
+    description: 'release title'
+    required: false
+  release-body:
+    description: 'release body'
+    required: false
+  token:
+    description: 'Personal access token (PAT) used to put tag'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    GHPUT_TAG: ${{ inputs.tag }}
+    GHPUT_TAG_TIME_FORMAT: ${{ inputs.tag-time-format }}
+    GHPUT_RELEASE_TITLE: ${{ inputs.release-title }}
+    GHPUT_RELEASE_BODY: ${{ inputs.release-body }}
+    GITHUB_TOKEN: ${{ inputs.token }}
