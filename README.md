@@ -22,5 +22,8 @@ jobs:
         name: Deploy
         run: make deploy
       -
+        name: Put release tag
         uses: k1LoW/ghput-release-action@v0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 ```
